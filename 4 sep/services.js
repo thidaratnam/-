@@ -1,0 +1,28 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".btn");
+    const circles = document.querySelectorAll(".circle");
+
+    // Hover effect ปุ่ม
+    buttons.forEach(btn => {
+        btn.addEventListener("mouseenter", () => {
+            btn.style.transform = "scale(1.1) rotate(-2deg)";
+        });
+        btn.addEventListener("mouseleave", () => {
+            btn.style.transform = "scale(1) rotate(0deg)";
+        });
+    });
+
+    // Background circles animation
+    let angle = 0;
+    function animateCircles() {
+        angle += 0.002;
+        circles.forEach((circle, i) => {
+            let x = Math.sin(angle + i) * 10;
+            let y = Math.cos(angle + i) * 10;
+            circle.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        requestAnimationFrame(animateCircles);
+    }
+    animateCircles();
+});
+
